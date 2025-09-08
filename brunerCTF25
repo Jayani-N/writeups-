@@ -1,0 +1,119 @@
+SHAKE&BAKE
+
+1. TheBakingCase:
+
+I hid a message for you here, see if you can find it! Take it slow, little by little, bit by bit.
+
+`i UseD to coDE liKe A sLEEp-dEprIVed SqUirRel smasHInG keYs HOPinG BugS would dISApPear THrOugh fEAr tHeN i sPilled cOFfeE On mY LaPTop sCReameD iNTerNALly And bakeD BanaNa bREAd oUt oF PAnIc TuRNs OUT doUGh IS EasIEr tO dEbUG ThaN jaVASCrIPt Now I whIsPeR SWEEt NOtHIngs TO sOurDoUGh StARtERs aNd ThReATEN CrOissaNts IF they DoN'T rIsE My OVeN haS fEWeR CRasHEs tHAN mY oLD DEV sErvER aNd WHeN THInGS BurN i jUSt cAlL iT cARAMElIzEd FeatUReS no moRE meetInGS ThAt coUlD HAVE bEeN emailS JUst MufFInS THAt COulD HAvE BEen CupCAkes i OnCE tRIeD tO GiT PuSh MY cInnAmON rOLLs aND paNICkED WHEn I coUldn't reVErt ThEm NOw i liVe IN PeaCE uNLESs tHe yEast getS IDeas abOVe iTs StATion oR a COOkiE TrIES To sEgfAult my toOTH FILlings`
+
+soln:
+
+binarize uppercase-1, lowercase-0….then use binary to text/ascii…thre you go:)
+
+1. BasEdBRUnnEr
+
+Brunsviger is just so [*based*](https://www.mathsisfun.com/numbers/bases.html), I think I could eat it in any form - from binary to decimal!
+
+**Tip:** This might require a bit of programming, I would recommend looking into the `int()` function in Python.
+
+EnCodE.py
+
+```python
+def encode_char(ch: str, base: int) -> str:
+    """
+    Encode a single character into a string of digits in the given base
+    """
+    value = ord(ch)
+    digits = []
+    while value > 0:
+        digits.append(str(value % base))
+        value //= base
+
+    return "".join(reversed(digits))
+
+with open("flag.txt") as f:
+    text = f.read().strip()
+
+# Encode the text with all bases from decimal to binary
+for base in range(10, 1, -1):
+    text = " ".join(encode_char(ch, base) for ch in text)
+
+with open("based.txt", "w") as f:
+    f.write(text)
+
+```
+
+soLN:
+
+we must **start decoding with base 2** and work up to base 10
+
+**base 2 → base 3 → base 4 → … → base 10 → ASCII**
+
+pytHon sCrIpt usEd to decoDe:
+
+```
+def decode_text(text, base):
+    """Decode a base-encoded string back into text."""
+    return "".join(chr(int(num, base)) for num in text.split())
+
+# Load the based.txt
+with open("baSed.txt") as f:
+    text = f.read().strip()
+
+# Decode from base 2 up to base 10
+for base in range(2, 11):
+    text = decode_text(text, base)
+
+print("Flag:", text)
+
+```
+
+1. THE YEAST KEY
+
+Many years ago, the legendary baker Lionel Poilâne entrusted us with his original sourdough recipe. It's been locked away in the Vault ever since.
+
+Only Poilâne knew the passphrase, and now he's gone. The only clue left behind? A strand of synthetic DNA extracted from his prized baker's yeast.
+
+Can you decode the DNA and recover the vault key? The DNA is:
+
+`CGAGCTAGCTCCCGTGCGTGCGCCCTAGCTGTATACCGGCATAACGTGATATCGTACCTTCTAAATAACGGCATACATCACGTGATATCCTTCGTCATCAATCCATCTATATCTAGCCTTATAACGCGCCTTATCCATAACTCCCTAGCGCAATAACTCCATCGCGGACCTTCTAAATCAATCCATCCCTAACGGACTAGATCAATCCATATCCTTATACATCCCCTTCGATCTAGATAAATACATCCATCCATCACGTGATCTCCCGATCACTCCATACATCTAGACATGCATATCTTC`
+
+soln:
+
+treating DNA as a **base-4 number system** where each nucleotide represents 2 bits
+
+python script:
+
+seq = "CGAGCTAGCTCCCGTGCGTGCGCCCTAGCTGTATACCGGCATAACGTGATATCGTACCTTCTAAATAACGGCATACATCACGTGATATCCTTCGTCATCAATCCATCTATATCTAGCCTTATAACGCGCCTTATCCATAACTCCCTAGCGCAATAACTCCATCGCGGACCTTCTAAATCAATCCATCCCTAACGGACTAGATCAATCCATATCCTTATACATCCCCTTCGATCTAGATAAATACATCCATCCATCACGTGATCTCCCGATCACTCCATACATCTAGACATGCATATCTTC"
+m = {'A':'00','C':'01','G':'10','T':'11'}
+bits = ''.join(m[b] for b in seq)
+data = int(bits[:len(bits)//8*8], 2).to_bytes(len(bits)//8, 'big')
+print(data.decode())
+
+1. pie recipe
+
+I found this pie recipe. It is simply named "The Recipe of the Golden Phi" by baker Zeckendorf. Can you help me figure out who made it?
+
+`89|89.21|55.13.5.1|34.13.2|89.8.1|89.13.5.2|34.13.5.1|89.13.5.1|89.8.2|89.21|89.21.5|34.13.3.1|89.8|55.13|55.21.2|89.13|89.1|89.21.8.3.1|55.8.2|89.21.8.2|89.1|55.13|55.21.2|89.21.5.2|55.21.8.3.1|34.13.3.1|55.8.3|89.21.1|55.21.1|55.21.8.2|55.1|89.21.8.1|89.1|89.13.5.1|55.2|34.13.5.2|89.1|55.21.8.3|55.21.2|89.21.3.1|89.1|55.21.8.3|34.13.5.1|89.13.5|89.8.1|34.13.3.1|55.13.5.1|89.13.5.2|89.13|55.21.5|55.5.1|55.5.1`
+
+soln:
+
+sum each token, convert sum to ascii (for all tokens), concatenate, base64 decode it
+
+1. train mania
+
+I recently stumpled upon this cool train! But I'd like to know a bit more about it... Can you please tell me the operating company, model number and its maximum service speed (km/h in regular traffic)?
+
+The flag format is `brunner{OPERATOR-MODELNUMBER-SERVICESPEED}`.
+
+So if the operator you have found is `DSB`, the model number `RB1`, and the maximum service speed is `173` km/h, the flag would be `brunner{DSB-RB1-173}`.
+
+soln:
+
+- **Operating Company**: SJ (Swedish railways) [List of bridges in Denmark - Wikipedia](https://en.wikipedia.org/wiki/List_of_bridges_in_Denmark)
+- **Model**: X2000 [Wikipedia](https://en.wikipedia.org/wiki/%C3%98resund_Bridge)[Geography Realm](https://www.geographyrealm.com/europes-longest-road-railway-bridge/) (also called X2)
+- **Maximum Service Speed**: 200 km/h [Øresund Bridge - Wikipedia +3](https://en.wikipedia.org/wiki/%C3%98resund_Bridge)
+
+The search results consistently show that it has a top commercial speed of 200 km/h [Øresund Bridge - Wikipedia](https://en.wikipedia.org/wiki/%C3%98resund_Bridge) and its maximum operating speed is 200 km/h [The Bridges of Denmark | HowtoliveinDenmark.com](https://www.howtoliveindenmark.com/stories-about-life-in-denmark/bridges-of-denmark/).
+
+Therefore, the flag should be: **`brunner{SJ-X2000-200}`**
