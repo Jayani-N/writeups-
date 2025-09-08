@@ -1,0 +1,91 @@
+TASK 1: MAIN FLAGS
+Initial Login Page & SQL Injection
+ The login form is susceptible to SQL Injection, allowing attackers to bypass authentication without knowing valid credentials. This is due to improperly sanitized user inputs in SQL queries.
+
+Examples of payloads:
+
+admin' –
+admin';--
+admin' /*
+' UNION SELECT 1,2,3,1,'admin
+Entering these in the username followed by any password lets the user login as admin.
+
+
+
+Admin Panel Disclosure
+The /admin endpoint, typically hidden, becomes accessible post-SQL injection login. This panel leaks usernames and passwords of all registered users, indicating a Sensitive Data Exposure vulnerability.
+
+Flag Retrieval: Visiting this hidden endpoint grant the user a flag.
+
+
+
+The leaked credentials can be used to authenticate normally to ‘admin’ user and retrieve the corresponding flag.
+
+
+
+IDOR (Insecure Direct Object Reference)
+Users can add and view personal notes with titles and some body. These also supports HTML formatting. By modifying the note ID in the URL (e.g., /note/2 to /note/1), we can access notes belonging to other users. Vulnerability Impact: Lack of access control on object references allows unauthorized data exposure.
+
+
+
+Cross Site Scripting (XSS)
+HTML input fields when not sanitized allow malicious scripts to be saved and executed in the browser of other users. This compromises session tokens or redirects victims.
+
+Since the notes supports HTML formatting. We can inject code into these notes using basic HTML scripts.
+
+
+
+
+Encoded Cross Site Scripting
+Most websites sanitize the user inputs to prevent XSS vulnerabilities in their webpages by not allowing syntax or text for certain formats. We can bypass this using encoding text to their ascii values or decimal values and injecting the XSS. Browsers decode these before rendering, reactivating the payload.
+
+Eg: <script>&#97;&#108;&#101;&#114;&#116;(1)</script>
+
+
+
+
+Server-Side Template Injection (SSTI)
+Unsensitized input can sometimes be passed into server-side template engines (like Jinja2). If expressions are interpreted, attackers can run arbitrary code. For example:
+
+ {{7*7}} => 49
+This can lead to full server compromise if RCE is possible.
+
+You can inject Server-side templates to the file search of option to reveal sensitive data. This happens when the user input is not sanitized.
+
+
+
+Advanced SSTI
+Expanding SSTI beyond one field demonstrates lack of sanitization across the app, suggesting systemic weaknesses in input validation such as input to the title of user notes.
+
+
+
+Event-Based Cross Site Scripting
+Event handlers like onerror are triggered under certain browser events. Injecting them into inputs can cause malicious execution without direct user interaction
+
+
+
+TASK 2: BONUS FLAGS
+Image Steganography
+Data is hidden within image files using LSB or metadata techniques. Tools like zsteg extract such hidden data. Logging into user Unknown gives us an image in the notes
+
+
+
+We can download this image and try to run text extraction techniques on it such as steghide, zsteg, etc.
+
+
+
+Using zsteg, we can see the flag hidden in the image.
+
+
+
+
+Audio Steganography
+Logging into the user user, we can see that this user has a .wav file as a note. Downloading and running this through a spectrogram generator gives us the flag.
+
+
+
+
+
+
+
+
