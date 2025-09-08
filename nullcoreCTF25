@@ -1,0 +1,452 @@
+MISC
+
+
+1. Welcome
+Difficulty: Easy/ 50 points
+
+Description:
+
+WELCOME TO NOCTIVUS NULL CORE CTF
+
+JOIN OUR DISCORD SERVER TO VERIFY AND OBTAIN THE FLAG:- https://discord.gg/uUTpXuRJ
+
+Solution:
+
+Joined the Discord. Explored #community — found the flag pinned
+
+Flag: NOCT{WELCOME_To_NULL_CoRe}
+
+
+
+2. Meta Mama
+Difficulty: Easy/ 100 points
+
+Description:
+
+Ethey… Insta la bot ah? 👀 There’s something strange about the Instagram account: @neuxdemorphous At first glance, it looks like a normal page — but beneath the surface, there’s something hidden.
+
+Solution:
+
+While exploring the challenge, I came across an unusual hint referring to the Instagram account @neuxdemorphous. At first glance, it appeared like a regular profile, but the bio “love is god” felt oddly cryptic — possibly a clue.
+
+Out of curiosity, I sent a direct message to the account. To my surprise, it replied instantly, hinting at some kind of automated bot behind the scenes.
+
+The response included the phrase “terrifying NOCTORIAN DRAGON”, which seemed intentionally emphasized — possibly the next clue or part of the flag.
+
+Flag: NOCT{NOCTORIAN_DRAGON}
+
+
+
+3. The Mighty Paul
+Difficulty: Easy/ 100 points
+
+Description:
+
+Forget payloads. Forget Wireshark. This time, the only thing standing between you and the flag… is pure testosterone.
+
+Straight from the mystical lands of China, The Mighty Paul has trained for this moment his whole life. While others brute-force passwords, Paul brute-forces people.
+
+He doesn’t speak much. He doesn’t need to. His forearm does the talking — and occasionally the crushing.
+
+Challenge: Face Paul in a real-life arm wrestling duel. Win, and something very interesting might come your way.
+
+Solution:
+
+Press enter or click to view image in full size
+
+Defeat the challenger in an Arm-wrestling match. Face him, win the duel, and obtain the flag from his hand.
+Flag: NOCT{earned_with_sweat}
+
+
+
+
+6. Mudinja Kandupudi 👀
+Difficulty: Medium/ 200 points
+
+Description:
+
+Someone uploaded something they shouldn’t have. The video looks normal, but trust us it’s not.
+
+Link: https://www.youtube.com/watch?v=sp2KcJoabQw&ab_channel=TeenSpidey
+
+Solution:
+
+The challenge provided a YouTube video with the description: “BEWARE FOR FAKE FLAGS! All the best for finding it, hope you guys make it till the end. 🙏
+
+While watching, I spotted a flag within the first five minutes and tried submitting it but it turned out to be a fake. So, I went back, watched the video again carefully, and finally found the real flag at 18:13
+
+Flag: NOCT{coco_melon<3}
+
+
+
+
+7. The Big 5
+Difficulty: Medium/ 400 points
+
+Description:
+
+They don’t need introductions. They don’t need names. They’re simply known as… The Big 5. Five iconic images. Five personalities. And one encrypted mess.
+
+What You’ve Got:
+
+Images 1 to 4 each carry a piece of encrypted data — it might look like nothing, but it’s everything.
+
+Image 5? That’s your golden ticket. It holds the password to make sense of the rest
+
+Solution:
+
+using unrar we extract the files to see 5 jpg images i wonder what they are hiding
+
+Press enter or click to view image in full size
+
+using exiftool we see a user comment of secret5.jpg
+
+Press enter or click to view image in full size
+
+We got some password seems like we can use it somewhere??? But where?
+
+Press enter or click to view image in full size
+
+Using exiftool i can see that they are password protected and guess what we already have the password soo yea its as simple as that get the password and run a openssl to decrypt it
+
+Flag: NOCT{the_bIg_fIVe}
+
+
+
+
+Cryptography
+
+
+1. Ronin’s Shift
+Difficulty: Easy/ 100 points
+
+Description:
+
+A lone ronin sent a message using an ancient scroll, shifting the letters to protect his secrets. Can you break the old warrior’s code?
+
+Ciphertext: Wklv lv d vhfuhw phvvdjh iurp wkh vdpxudl frgh
+
+Hint: Brute-forcing won’t dishonor you.
+
+Solution:
+
+The challenge hint was basically waving a big flag saying Caesar Cipher, bro. The “Brute-forcing” clue sealed it time to run through all possible shifts. Since ROT3 is a classic, I gave it a shot first.
+
+Shifted each letter back by 3, and boom the scrambled text unfolded into a clean, readable message. Another simple cipher bites the dust.
+
+Flag: NOCT{This_is_a_secret_message_from_the_samurai_code}
+
+
+
+2. Hash Me If You Can
+Difficulty: Easy/ 200 points
+
+Description:
+
+Here is your Hash: 14d3f05bcced45b09675b22d9047df0fef5c9e889b23ee033f8aad6b93b981cf Can you crack it and find the flag in format?
+
+Solution:
+
+Got a SHA-256 hash and was told to find the flag. Instead of spinning up heavy cracking tools, I tried a few common guesses manually. One of them hit babe. Hashed it again to confirm, and it matched perfectly. Easy win.
+
+Flag: NOCT{babe}
+
+
+
+3. RookieRSA
+Difficulty: Easy/ 200
+
+Description:
+
+This service encrypts the flag using RSA. But maybe the exponent is a little too small… You’re given only N, e, and c.
+
+Can you recover the flag?
+
+Solution:
+
+Found N, e, and c in rookieRSA.txt. With e = 3, I knew it might be weak. Instead of writing code, I plugged the values into an online RSA decryption tool that supports small-exponent attacks. It calculated the cube root, converted it to text, and gave me the flag.
+
+Flag: NOCT{baby_rsa_moment}
+
+
+
+4. Ashes of the Cipher
+Difficulty: Medium/ 400 points
+
+Description:
+
+In a world where shadows speak and silence writes in rhythm, a message from the ashes awaits a true decoder. Reverse the echo, walk with the elites, and rise with the night. “Whispers echo in reverse. The elites once spoke in rhythm and war. When the code of night (NOCT) aligns, the truth rises from the ashes. Begin with the end, and let wisdom guide each layer.”
+
+Solution:
+
+Opened Ashes_of_Cipher.txt and saw a long string ending with = classic Base64.
+
+Press enter or click to view image in full size
+
+hmmm seems to the flag needs a reversal
+Decoded it and got a series of dots and dashes, which was clearly Morse code. Translating that gave me a string of letters and numbers.
+
+Press enter or click to view image in full size
+
+now add theses “{ }”
+The challenge description mentioned “reverse echoes,” so I reversed the string and boom, it matched perfectly.
+
+Flag: NOCT{CRYPTO_SPEEKS_IN_SHADOWS}
+
+
+
+
+5. Return of the Cipher
+
+Difficulty: Medium/ 400 points
+
+Description:
+
+A second message has come in the mail, and it seems almost identical to the first one. Maybe the same thing will work again. Download the message here and see if you can break the cipher once more. Patterns repeat, habits form, and those who crack one might just crack another. Can you see what hasn’t changed?
+
+Solution:
+
+Cracked open the given file and spotted the encrypted flag tucked away at the bottom. The challenge title and description hinted it was using the same Caesar/ROT cipher trick from a previous task.
+
+Press enter or click to view image in full size
+
+got a nice string inside the palceholders
+I ran it through a Caesar brute-force and found that a shift of 15 revealed readable text. Swapping out the starting placeholder with NOCT gave the final flag.
+
+Flag: NOCT{SECOND_TIME_AROUND_4774LI5_4E3_L001_6J0659OM}
+
+
+
+
+Forensics
+1. Hidden Scroll
+Difficulty: Easy/ 100 points
+
+Description:
+
+The Dragon has hidden a scroll in our sponsors logo do you think you have what it takes to find the scroll and help our sponsor out? This CTF is powered by TG cyberlabs a security firm founded by Sriram Kesavan.
+
+Solution:
+
+Bruh, this one was light work. Just hit it with:
+
+stegseek tgcyberlabs.jpg /usr/share/wordlists/rockyou.txt
+
+Boom it coughed up a flag.txt
+
+
+Flag: NOCT{Thank_you_TG_cyberlabs}
+
+
+
+2. Dummy_Traffic.pcap
+Difficulty: Easy/ 100 points
+
+Get Abilash B’s stories in your inbox
+Join Medium for free to get updates from this writer.
+
+Enter your email
+Subscribe
+Description:
+
+we found a dummy pcap file laying around why not help this old dragon out and find me the flag i kept inside this pcap if you do that the dragon will be pleased wink wink….
+
+Solution:
+
+I opened the pcap in Wireshark and saw there was only one packet. I checked it out and noticed some plain text just sitting there. No tricks or hacks just the flag hanging out in the payload.
+
+Flag: NOCT{DUMMY_PACKET_TRAFFIC_LOL_OK}
+
+
+
+3. Hidden Samurai Traffic
+Difficulty: Easy/ 200 points
+
+Description:
+
+A silent warrior once passed through the digital realm, leaving no trace… or so he thought. A base64-encoded scroll lies hidden in the network mist. Can you decode his secret?
+
+Solution:
+
+Found a zip file, unzipped it, and got two files a README and a traffic_flag. README dropped the hint: the secret was base64 encoded. So I opened the traffic_flag file, saw some weird unreadable text ending with “==” classic base64 style.
+
+Press enter or click to view image in full size
+
+Flag: NOCT{samurai_blade_hidden_in_traffic}
+
+
+
+
+4. HOT RODS
+Difficulty: Easy/ 200 points
+
+Description:
+
+During a casual moment, the top G’s of the class posed for a group photo but this wasn’t just a memory capture. The image was part of a planned drop, concealing something far more intentional. Inside the photo lies a hidden message, carefully embedded using metadata. But it doesn’t stop there — the metadata has been hashed or encrypted, requiring deeper forensic work to uncover what’s beneath. Your Objective: Extract metadata from the image. Decrypt or decode it to reveal a poem. Determine the author of the poem. The author’s name is your flag.
+
+Solution:
+
+I popped open the pic hunting for a flag unlucky, nothing popped out in plain sight. But the description was already dropping hints about metadata, so I went straight for exiftool
+
+That’s when I found it a string tucked away in the metadata, looking all encrypted. Gave off strong Base64 vibes, so I ran it through an online decoder. Boom out came a few lines that read like part of a poem or somethin’.
+
+Press enter or click to view image in full size
+
+Quick Google search on those exact lines? Bang it led me to the original work and the author. That author’s name? That’s the flag.
+
+
+Flag: NOCT{Lawrence}
+
+
+
+
+5. Swords of the Stream
+Difficulty: Medium/ 400 points
+
+Description:
+
+A wandering samurai sent this flag to the wind, hidden in the streams of communication. Can you collect all its whispers? Hint: Base64 is your katana. Split and slash the traffic with precision. Tools like tcpdump, tshark, or any pcap viewer may help.
+
+Solution:
+
+Found a zip file, unzipped it, and got two files a README and a traffic_flag. README dropped the hint: the secret was base64 encoded. So I opened the traffic_flag file, saw some weird unreadable text ending with “==” classic base64 style.
+
+Press enter or click to view image in full size
+
+Flag: NOCT{samurai_blade_hidden_in_traffic}
+
+
+
+
+6. Puli Distorted Decode <3
+Difficulty: Medium/ 400 points
+
+Description:
+
+You thought “Puli Puli Puli” was just a song? Think again, puli boy. Rumor has it Darkey was high on crypto and encoded the flag somewhere deep inside this sonic jungle. One guy played it backwards and his speakers caught fire. Another tried humming along and got banned from the CTF. If you survive without questioning your life choices, maybe — just maybe — you’ll find the flag.
+
+No hints. No mercy. Just puli puli puli.
+
+Good luck, puli hunter. You’ll need it.
+
+Solution:
+
+Got a .wav file for the challenge, and my first thought yep, sounds like stego. Popped it open in Audacity (File → Import → Audio), ditched the default waveform, and flipped it to Spectrogram view. That’s where the magic happens zoomed in on the highs and spotted some funky pulse patterns spelling out text.
+
+
+
+Darkey vibes 💃🕺 puli.. puli.. puli………
+Flag: NOCT{pulixpuli}
+
+
+
+
+WEB
+
+
+
+1. Trifecta’s Trail
+Difficulty: Easy/ 100 points
+
+Description:
+
+hey guys check out this cool website i just found the author must be quite the writer he explained vulnerabilities like a true gentlement iykyk buttt i think they might be something fishy going on they check it out!!! here ya go user : https://balakumaran1507.github.io/Trifecta_CTF/
+
+Solution:
+The challenge name “Trifecta” was basically screaming three stages, bro. So I popped open the page source and, yep, there were three sneaky Base64 strings chilling in different corners of the files.
+
+Layer 1 — Hiding in the CSS like it owned the place, tucked inside a content: property.
+
+
+Layer 2 — Sitting in the HTML under the XSS section, trying to act like a command line snippet. Nice try.
+
+Press enter or click to view image in full size
+Layer 3 — Just vibing in the linked JavaScript file.
+
+
+Decoded each of them one by one, slapped the pieces together like digital LEGO, and boom the full flag popped out.
+
+Flag: NOCT{im_just_wasting_ur_time}
+
+
+
+2. Dumb Bots
+Difficulty: Easy/ 100 points
+
+Description:
+
+ayoooo its me again ofc im again with a super cool website well sooner or later this author gonna blow up like litterally…. may god bless his soul here ya go bud : https://balakumaran1507.github.io/fck_bots_CTF/
+
+Solution:
+
+First stop — robots.txt. Always worth a peek to see what the site doesn’t want you snooping around in. Sure enough, it had a /unlisted/ path sitting there like a neon “come check me out” sign.
+
+
+Rolled over to that directory, and there it was flag.txt just chilling. Opened it up, and boom… flag secured.
+
+Press enter or click to view image in full size
+
+Flag: NOCT{bots_reveal_too_much}
+
+
+
+3. Lost In Your Eyes💗
+Difficulty: Easy/ 200 points
+
+Description:
+
+its me again you guessed it right im back with another super cool website ofc same as the great author himself this time he into some shady stuff help me uncover whats he is hiding despite knowing they is nothing? where do you look? they is something in something that never existed? well thats for you to figure it out : https://balakumaran1507.github.io/lost_in_ur_eyes_CTF/
+
+Solution:
+
+Checked the page source and spotted a console.log near the bottom that screamed “look at the JS file.”
+
+Press enter or click to view image in full size
+
+Press enter or click to view image in full size
+
+Popped open the JS in the site’s resources and saw a parts array loaded with Base64 chunks. Decoded them, stitched them together, and boom full flag unlocked.
+
+Flag: NOCT{not_found_but_achieved}
+
+
+
+
+4. One Last Time 🥂
+Difficulty: Easy/ 200 points
+
+Description:
+
+hear me out okay?! i just have one last super dexule cool website to show you just one more and i promise this is the last of the great authors website well its pretty sad our journey ends here but it was a good one player here ya go ur last target take him down: https://balakumaran1507.github.io/LSB_shapes_CTF/ all he wanted was to make websites for her and u distoryed every single on of em…. i hope u feel good with those points…
+
+Solution:
+
+Opened the GitHub Pages URL and checked the page source code, where I spotted a strangely named smaple.svg file.
+
+Press enter or click to view image in full size
+
+Cracked it open and found a <metadata> tag holding an EncodedFlag value, while the <desc> was just there to throw me off.
+
+Press enter or click to view image in full size
+
+Grabbed the Base64 string from the metadata, decoded it, and boom flag in hand.
+
+Flag: NOCT{svg_svg_svg}
+
+
+
+
+OSINT
+
+1. Island nga
+Difficulty: Easy/ 100 points
+
+Description:
+
+Welcome to Island a place so mysterious, even the fish seem to keep secrets. The water here doesn’t taste salty — it tastes like sweet juice. Locals whisper tales of travelers who came for a sip and stayed forever… mostly because they couldn’t find their way back.
+
+Solution:
+
+The challenge description paints a quirky picture “Welcome to Island… water tastes like sweet juice”. While most might think of exotic beaches, my mind immediately jumped to a trending Instagram reel from Koomapatty, where a man shouts: “Yenaga… Koomapatty vanga… thani sharbat mathiri iruku nga…” That “sweet juice” clue sealed the connection. Since the challenge said the solution is a pincode, I looked up the pincode for Koomapatty and that turned out to be the CTF flag.
+
+Flag: NOCT{626133}
